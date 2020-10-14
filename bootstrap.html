@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+	<title>Esto es un ejemplo de Bootstrap</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Latest compiled JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+		$("#bienvenida").hide();	
+		
+		$("#boton1").click(function(){
+			alert("Bienvenid@ " + $("#username").val());
+			$("#bienvenida").show();
+			
+			 $.get("https://api.github.com/users/"+ $("#username").val() , function(data, status){
+			  $("#user").text(data.login)
+			  $("#followers").text(data.followers)
+			  $("#info").text(data.url)
+			  },"json");
+			  
+		});		
+		
+		$("#si").click(function(){
+			$("#username").val("Nombre");
+		});
+	});
+	
+	
+	
+	</script>
+	
+  </head>
+  
+  <body>
+  
+  <div class="jumbotron">
+	<h1> Bootstrap y JQuery </h1>
+	<p> Introduzca su <mark>nombre de usuario: </mark><input type="text" id="username" value="Nombre"></p>
+	
+    <button type="button" id="boton1" class="btn btn-primary active">Aceptar</button>
+	<p id="bienvenida">Hola, aquí tiene su información...</p>
+    
+  </div>
+	
+	<p> <h3>Aquí irá una tabla con la info:</h3> </p>
+	<div class="table-bordered">
+		<table class="table">
+		
+			<thead>
+				<tr>
+				<th>Nombre</th>
+				<th>Seguidores</th>
+				<th>Info</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+			<tr>
+				<td id="user"></td>
+				<td id="followers"></td>
+				<td id="info"></td>
+			</tr>
+		
+			</tbody>
+			
+		</table>
+	</div>
+	
+	
+	
+	<p>Continuar?</p>
+	<button type="button" id="si" class="btn btn-primary active">Sí</button>
+	<button type="button" class="btn btn-primary disabled">No</button>
+  
+  
+  </body>
+  
+</html>
+
+
+
+
+
